@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Cake Search form</title>
+  <link rel="stylesheet" type="text/css" href="feedback_form.css">
+</head>
+
+<body bgcolor="#E6E6FA" style="display: flex; flex-direction: column;justify-content: center; align-items: center;">
+  <h2>Do you want to Search for a Cake? Please select one value from the Dropdown:</h2>
+  <table>
+    <tr>
+      <td>Search for the Cake:</td>
+      <td><select name="search" onchange="changeValue()" id="cakesearch" required>
+          <option value="choice" selected="selected">Select an option</option>
+          <option value="Strawberry">Strawberry Cake</option>
+          <option value="Mango">Mango Cake</option>
+          <option value="Chocolate">Chocolate Cake</option>
+          <option value="RedVelvet">RedVelvet Cake</option>
+          <option value="ButterScotch">ButterScotch Cake</option>
+        </select><br></td>
+    </tr>
+  </table>
+  <button type="button" id="btn">Get Details</button>
+  <a href="mainForm.html"><button>Home Page </button> </a>
+
+  <div class="data">
+
+  </div>
+  <!-- <script type="text/javascript"></script> -->
+  <script type="text/javascript">
+    let val;
+    const changeValue = () => {
+
+      const e = document.querySelector("#cakesearch")
+      val = e.options[e.selectedIndex].value
+    }
+    const btn = document.querySelector("#btn")
+    btn.addEventListener('click', async () => {
+      var api = "https://3026ex0gg7.execute-api.us-east-2.amazonaws.com/Dev/cakedetailsresource"
+      let params = "?name=" + val + " Cake"
+      var request = new XMLHttpRequest();
+      // console.log("herer")
+      request.onload = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          var data = JSON.parse(JSON.stringify("{" + request.response + "}"));
+          data = JSON.parse(data)
+          console.log(data)
+          const show = document.querySelector(".data");
+          if (data.id === "") {
+            show.append("Please Select any option")
+          }
+          else {
+
+            const id = document.createElement("div")
+            id.innerText = "id: " + data.id
+            show.appendChild(id)
+            const name = document.createElement("div")
+            name.innerText = "Name: " + data.name
+            show.appendChild(name)
+            const comment = document.createElement("div")
+            comment.innerText = "Comment: " + data.comment
+            show.appendChild(comment)
+            const yumfactor = document.createElement("div")
+            yumfactor.innerText = "YumFactor: " + data.yumfactor
+            show.appendChild(yumfactor)
+            const imageURL = document.createElement("div")
+            const url = document.createElement("div")
+            url.innerText = "Image URL: " + data.imageURL
+            imageURL.append(url)
+            imageURL.append(document.createElement("br"))
+            const image = document.createElement("img")
+            image.style.height = "300px"
+            image.style.width = "300px"
+            image.src = data.imageURL
+            imageURL.append(image)
+            show.appendChild(imageURL)
+
+          }
+        } else {
+          console.log('error')
+        }
+      };
+      await request.open('GET', api + params, true);
+      await request.send();
+    })
+  </script>
+</body>
+
+</html>

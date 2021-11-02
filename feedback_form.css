@@ -1,0 +1,80 @@
+body{
+margin: 20px;
+text-align: left;
+padding: 10px;
+}
+ 
+input[type=text],[type=number]{
+width:60%;
+margin: 8px 0;
+padding: 7px 10px;
+display: inline-block;
+border:1px solid #ccc;
+box-sizing: border-box;
+}
+
+select{
+width: 150px;
+margin-left:15px;
+margin-bottom: 8px;
+margin-top: 8px;
+padding: 7px 10px;
+display: inline-block;
+border:1px solid #ccc;
+box-sizing: border-box;
+}
+
+button {
+    background-color: chartreuse;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    color: black;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 20px 0;
+    /* width: 100%; */
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+
+}
+
+input#cakeid{
+margin-left:73px;
+margin-bottom: 8px;
+}
+
+input#name{
+margin-left:45px;
+margin-bottom: 8px;
+}
+
+input#comment{
+margin-left:20px;
+margin-bottom: 8px;
+}
+
+input#imageURL{
+margin-left:15px;
+margin-bottom: 8px;
+}
+ 
+
+label{
+font-family:'Lato', sans-serif;
+color: gray;
+}
+ 
+button:hover{
+opacity:0.8;
+}
+
+td{
+width:140px;
+}

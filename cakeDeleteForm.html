@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Cake Search form</title>
+  <link rel="stylesheet" type="text/css" href="feedback_form.css">
+</head>
+
+<body bgcolor="#E6E6FA" style="display: flex; flex-direction: column;justify-content: center; align-items: center;">
+  <h2>Please select one value from the list of Cakes to delete::</h2>
+  <table>
+    <tr>
+      <td>Search for the Cake:</td>
+      <td><select name="search" onchange="changeValue()" id="cakedelete" required>
+          <option value="choice" selected="selected">Select an option</option>
+          <option value="Strawberry">Strawberry Cake</option>
+          <option value="Mango">Mango Cake</option>
+          <option value="Chocolate">Chocolate Cake</option>
+          <option value="RedVelvet">RedVelvet Cake</option>
+          <option value="ButterScotch">ButterScotch Cake</option>
+        </select><br></td>
+    </tr>
+  </table>
+  <button type="button" id="btn">Delete</button>
+  <a href="mainForm.html"><button>Home Page </button> </a>
+
+  <div class="data">
+
+  </div>
+  <script type="text/javascript">
+    let val;
+    const changeValue = () => {
+
+      const e = document.querySelector("#cakedelete")
+      val = e.options[e.selectedIndex].value
+    }
+    const btn = document.querySelector("#btn")
+    btn.addEventListener('click', async () => {
+      var api = "https://3026ex0gg7.execute-api.us-east-2.amazonaws.com/Dev/cakedetailsresource"
+      let params = "?name=" + val + " Cake"
+      var request = new XMLHttpRequest();
+      request.onload = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            console.log(request.response)
+            const data = document.querySelector(".data")
+            data.textContent = "Entry Deleted Successfully !!"
+        } else {
+          console.log('Error Deleting an Entry, Try Again !!')
+        }
+      };
+      await request.open('DELETE', api + params, true);
+      await request.send();
+    })
+  </script>
+</body>
+
+</html>
