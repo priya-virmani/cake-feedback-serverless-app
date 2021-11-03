@@ -1,10 +1,14 @@
-version: 0.1
+version: 0.2
+env:
+  variables:
+    INPUT_FILE: "template.yml"
+    S3_BUCKET: "cake-form-files"
 phases:
   install:
+    runtime-versions:
+      python: 3.9
     commands:
-      - aws cloudformation package --template-file template.yaml --s3-bucket cake-form-files --output-template-file outputCFTemplate.yaml
+      - aws cloudformation package --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template-file outputCFTemplate.yaml
 artifacts:
-  type: zip
   files:
-    - template.yaml
     - outputCFTemplate.yaml
