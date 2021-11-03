@@ -14,4 +14,8 @@ This project is created with:
 * HTML/CSS
 
 ## Setup
-To run this project
+To run this project:
+1. Clone this repository in your local.
+2. Open the local folder where you have cloned the repo.
+3. Run the 'mainForm.html' file.
+4. You choose from the three options on the screen as Add a Cake, Fetch Cake Details and Delete a Cake.
