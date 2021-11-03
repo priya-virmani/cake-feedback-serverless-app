@@ -10,7 +10,7 @@ This project is a serverless application for a Cake Feedback with GET/POST/DELET
 ## Technologies
 This project is created with:
 * Python-3.9
-* AWS - Api Gateway, S3, Lambda, CloudWatch, DynamoDB, CloudFormation, CodePipeline, CodeBuild.
+* AWS - Api Gateway, S3, Lambda, CloudWatch, DynamoDB, CloudFormation, CodePipeline.
 * HTML/CSS/Javascript
 
 ## Setup
